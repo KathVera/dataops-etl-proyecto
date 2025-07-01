@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clonar repositorio') {
             steps {
-                git 'https://github.com/KathVera/dataops-etl-proyecto.git'
+                git branch: 'main', url: 'https://github.com/KathVera/dataops-etl-proyecto.git'
             }
         }
 
@@ -21,3 +21,4 @@ pipeline {
         }
     }
 }
+
