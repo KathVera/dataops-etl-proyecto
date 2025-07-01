@@ -1,10 +1,20 @@
-from transform import transformar_datos
+# etl/main.py
+from etl.extract import extraer_datos
+from etl.transform import transformar_datos
+from etl.load import cargar_datos
 
-df = transformar_datos()
+def main():
+    # 1. Extraer desde base de datos
+    df = extraer_datos()
+    if df.empty:
+        print("No se pudieron extraer datos.")
+        return
 
-# Mostrar en pantalla (para el pantallazo)
-print(df)
+    # 2. Transformar
+    df_transformado = transformar_datos(df)
 
-# Guardar salida como CSV
-df.to_csv("data/salida_transformada.csv", index=False)
-print("\n✅ Archivo 'salida_transformada.csv' generado correctamente.")
+    # 3. Guardar
+    cargar_datos(df_transformado)
+
+if __name__ == "__main__":
+    main()
