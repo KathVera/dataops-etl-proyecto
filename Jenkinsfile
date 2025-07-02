@@ -17,12 +17,17 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/KathVera/dataops-etl-proyecto.git'
             }
         }
+		
+		stage('Construir imagen Docker') {
+			steps {
+				sh '''
+					docker builder prune -af
+					docker image rm -f dataops-etl || true
+					docker build --no-cache -t dataops-etl .
+				'''
+			}
+		}
 
-        stage('Construir imagen Docker') {
-            steps {
-                sh 'docker build --no-cache -t dataops-etl .'
-            }
-        }
 
         stage('Verificar archivos dentro del contenedor') {
             steps {
@@ -37,4 +42,3 @@ pipeline {
         }
     }
 }
-
