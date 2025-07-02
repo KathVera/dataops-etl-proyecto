@@ -5,13 +5,13 @@ pipeline {
         PYTHONUNBUFFERED = '1'
     }
 
-	stage('Limpiar workspace') {
+    stages {
+        stage('Limpiar workspace') {
             steps {
                 deleteDir()
             }
         }
-	
-    stages {
+
         stage('Clonar repositorio') {
             steps {
                 git branch: 'main', url: 'https://github.com/KathVera/dataops-etl-proyecto.git'
@@ -20,15 +20,21 @@ pipeline {
 
         stage('Construir imagen Docker') {
             steps {
-                sh 'docker build -t dataops-etl .'
+                sh 'docker build --no-cache -t dataops-etl .'
+            }
+        }
+
+        stage('Verificar archivos dentro del contenedor') {
+            steps {
+                sh 'docker run --rm dataops-etl ls -R /app'
             }
         }
 
         stage('Ejecutar contenedor') {
             steps {
-                // Ejecuta el contenedor como está definido en Dockerfile (CMD ["python", "main.py"])
                 sh 'docker run --rm dataops-etl'
             }
         }
     }
 }
+
