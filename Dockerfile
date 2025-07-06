@@ -6,8 +6,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
+COPY data/ data/  # <--- ¡Esta línea es clave!
 
-# Agrega esta línea para que Python reconozca /app como raíz
 ENV PYTHONPATH=/app
 
 CMD ["python", "main.py"]
