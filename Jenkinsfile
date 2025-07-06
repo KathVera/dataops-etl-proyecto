@@ -21,13 +21,13 @@ pipeline {
 		stage('Construir imagen Docker') {
 			steps {
 				sh '''
-					docker builder prune -af
+					docker builder prune -af || true
 					docker image rm -f dataops-etl || true
+					docker rmi $(docker images -q) || true  # elimina imágenes anteriores
 					docker build --no-cache -t dataops-etl .
 				'''
 			}
 		}
-
 
         stage('Verificar archivos dentro del contenedor') {
             steps {
