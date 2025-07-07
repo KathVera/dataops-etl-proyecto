@@ -32,25 +32,28 @@ Diseñar e implementar un pipeline automatizado que:
 ## Estructura del Proyecto
 
 dataops-etl/
-    data/
-      departamentos.csv
-      resultado_etl.csv
-    etl/
-      init.py
-      config.py
-      extract.py
-      load.py
-      transform.py
-      test_conn.py
-    Dockerfile
-	Dockerfile.jenkins
-	docker-entrypoint
-	gitignore
-    Jenkinsfile
-    main.py
-    requirements.txt
-	testfile.txt
-    README.md
+│
+├── data/
+│   ├── departamentos.csv
+│   └── resultado_etl.csv
+│
+├── etl/
+│   ├── __init__.py
+│   ├── config.py
+│   ├── extract.py
+│   ├── load.py
+│   ├── transform.py
+│   └── test_conn.py
+│
+├── Dockerfile
+├── Dockerfile.jenkins
+├── docker-entrypoint.sh
+├── .gitignore
+├── Jenkinsfile
+├── main.py
+├── requirements.txt
+├── testfile.txt
+└── README.md
 
 
 ## Flujo ETL
