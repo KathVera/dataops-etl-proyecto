@@ -6,7 +6,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
-COPY data/ data/  # <--- ¡Esta línea es clave!
+COPY data/ data/
 
 ENV PYTHONPATH=/app
 
